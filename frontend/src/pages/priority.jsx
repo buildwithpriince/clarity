@@ -232,7 +232,7 @@ export function SIPCalculatorPage() {
     return arr;
   }, [monthly, rate, years]);
 
-  const final = data[data.length - 1];
+  const final = data[data.length - 1] || { invested: 0, value: 0 };
 
   return (
     <FeatureLayout
@@ -518,7 +518,7 @@ function NumberField({ label, prefix, suffix, value, onChange, testid, min = 0, 
           min={min}
           max={max}
           step={step}
-          onChange={(e) => onChange(Number(e.target.value) || 0)}
+          onChange={(e) => onChange(Number(e.target.value) || min || 1)}
           className="editorial-input"
           style={{ fontSize: "2.5rem" }}
           data-testid={testid}
