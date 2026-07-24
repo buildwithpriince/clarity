@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bone: #F7F3E9;
+  --ink: #1B2620;
+  --ink-deep: #0F1712;
+  --emerald: #1F4D3D;
+  --emerald-bright: #2F8F5B;
+  --hairline-light: rgba(27, 38, 32, 0.18);
+  --hairline-dark: rgba(247, 243, 233, 0.18);
+}
+
+html, body, #root {
+  background-color: var(--bone);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              color 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Base reset for shadcn defaults so they don't fight our palette */
+@layer base {
+  :root {
+    --background: 45 47% 94%;
+    --foreground: 150 20% 12%;
+    --card: 45 47% 94%;
+    --card-foreground: 150 20% 12%;
+    --popover: 45 47% 94%;
+    --popover-foreground: 150 20% 12%;
+    --primary: 155 43% 21%;
+    --primary-foreground: 45 47% 94%;
+    --secondary: 45 30% 88%;
+    --secondary-foreground: 150 20% 12%;
+    --muted: 45 30% 88%;
+    --muted-foreground: 150 12% 32%;
+    --accent: 149 50% 37%;
+    --accent-foreground: 45 47% 94%;
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 45 47% 94%;
+    --border: 150 15% 82%;
+    --input: 150 15% 82%;
+    --ring: 155 43% 21%;
+    --radius: 0.5rem;
+  }
+}
+
+/* Typography classes */
+.font-display {
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+
+.font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.italic-emerald {
+  font-style: italic;
+  color: var(--emerald-bright);
+  font-family: 'Fraunces', serif;
+}
+
+.hairline {
+  border-color: var(--hairline-light);
+}
+.dark-section .hairline {
+  border-color: var(--hairline-dark);
+}
+
+/* Custom selection */
+::selection {
+  background: var(--emerald-bright);
+  color: var(--bone);
+}
+
+/* Dark chapter background */
+.dark-section {
+  background-color: var(--ink-deep);
+  color: var(--bone);
+}
+
+/* Reveal animation utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.delay-1 { transition-delay: 80ms; }
+.reveal.delay-2 { transition-delay: 160ms; }
+.reveal.delay-3 { transition-delay: 240ms; }
+.reveal.delay-4 { transition-delay: 320ms; }
+
+/* Pill button */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.65rem 1.4rem;
+  background: var(--ink-deep);
+  color: var(--bone);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 250ms ease, color 250ms ease, transform 250ms ease;
+  cursor: pointer;
+  border: none;
+}
+.pill-btn:hover { background: var(--emerald); transform: translateY(-1px); }
+.pill-btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.pill-btn.ghost:hover { background: var(--ink); color: var(--bone); }
+.dark-section .pill-btn.ghost { color: var(--bone); border-color: var(--bone); }
+.dark-section .pill-btn.ghost:hover { background: var(--bone); color: var(--ink-deep); }
+
+/* Emerald dot */
+.emerald-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--emerald-bright);
+  vertical-align: middle;
+}
+
+/* Colophon wordmark */
+.wordmark {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 400;
+  font-size: clamp(6rem, 22vw, 20rem);
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  transition: font-variation-settings 500ms ease, letter-spacing 500ms ease;
+}
+.wordmark:hover {
+  font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 500;
+  letter-spacing: -0.05em;
+}
+.wordmark .dot {
+  color: var(--emerald-bright);
+  display: inline-block;
+  animation: pulseDot 4s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-4px) scale(1.05); opacity: 0.85; }
+}
+
+/* Floating rupee note animation */
+@keyframes float-note {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+.floating-note { animation: float-note 6s ease-in-out infinite; transform-origin: center; }
+
+/* Range slider (used by shadcn Slider) — deep emerald track */
+[data-slot="slider"] [data-orientation="horizontal"] { height: 4px; }
+
+/* Number inputs — editorial style */
+.editorial-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline-light);
+  padding: 0.5rem 0;
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  color: var(--ink);
+  width: 100%;
+  outline: none;
+  font-variation-settings: "opsz" 144;
+}
+.editorial-input:focus { border-bottom-color: var(--emerald-bright); }
+.dark-section .editorial-input { color: var(--bone); border-bottom-color: var(--hairline-dark); }
+
+/* Hide number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* Chapter marker */
+.chapter-marker {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hairline-light);
+  margin-bottom: 3rem;
+}
+.dark-section .chapter-marker { border-color: var(--hairline-dark); }
+.chapter-marker .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--emerald-bright);
+}
+.chapter-marker .desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* FIG caption */
+.fig-caption {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Preview panel */
+.preview-panel {
+  border: 1px solid var(--hairline-light);
+  padding: 2rem;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+}
+.dark-section .preview-panel { border-color: var(--hairline-dark); }
+
+/* Nav link underline hover */
+.nav-link {
+  position: relative;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: currentColor;
+  text-decoration: none;
+  transition: color 200ms ease;
+  cursor: pointer;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 1px;
+  background: var(--emerald-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); }
+.nav-link.active::after { transform: scaleX(1); }
+
+/* Scrollbar minimal */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(27,38,32,0.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(27,38,32,0.35); }
