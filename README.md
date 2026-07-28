@@ -82,3 +82,5 @@ Return-rate scenarios:
 - Synthetic data only in this prototype.
 - Intent to align with India's DPDP Act 2023 in a production build.
 - Calm financial disclaimer — not a bureau, not regulated advice.
+
+URL : https://clarity-orcin-ten.vercel.app
