@@ -40,8 +40,8 @@ export function GoalsPage() {
               <input placeholder="New goal name" value={name} onChange={(e) => setName(e.target.value)} className="editorial-input mb-3" style={{ fontSize: "1.4rem" }} data-testid="goal-name" />
               <div className="flex gap-3 items-baseline mb-4">
                 <span className="font-display text-lg opacity-60">₹</span>
-                <input type="number" value={target} onChange={(e) => setTarget(+e.target.value)} className="editorial-input" style={{ fontSize: "1.4rem" }} data-testid="goal-target" />
-                <input type="number" value={months} onChange={(e) => setMonths(+e.target.value)} className="editorial-input w-24" style={{ fontSize: "1.4rem" }} data-testid="goal-months" />
+                <input type="text" inputMode="numeric" pattern="[0-9]*" value={target === 0 ? "" : target} onChange={(e) => setTarget(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" style={{ fontSize: "1.4rem" }} data-testid="goal-target" />
+                <input type="text" inputMode="numeric" pattern="[0-9]*" value={months === 0 ? "" : months} onChange={(e) => setMonths(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input w-24" style={{ fontSize: "1.4rem" }} data-testid="goal-months" />
                 <span className="font-display text-lg opacity-60">mo</span>
               </div>
               <button className="pill-btn" onClick={() => { if (name && target && months) { setGoals([...goals, { name, target, months, saved: 0 }]); setName(""); } }} data-testid="goal-add">+ Add goal</button>
