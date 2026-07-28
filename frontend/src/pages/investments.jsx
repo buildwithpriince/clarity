@@ -139,9 +139,9 @@ export function GrowthProjectionsPage() {
         left={
           <div>
             <div className="eyebrow opacity-60 mb-2">Monthly amount</div>
-            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="number" value={monthly} onChange={(e) => setMonthly(+e.target.value)} className="editorial-input" data-testid="proj-monthly" /></div>
+            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="text" inputMode="numeric" pattern="[0-9]*" value={monthly === 0 ? "" : monthly} onChange={(e) => setMonthly(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" data-testid="proj-monthly" /></div>
             <div className="eyebrow opacity-60 mb-2">Years</div>
-            <div className="flex items-baseline gap-2"><input type="number" value={years} min={1} max={40} onChange={(e) => setYears(+e.target.value)} className="editorial-input" data-testid="proj-years" /><span className="font-display text-2xl opacity-60">years</span></div>
+            <div className="flex items-baseline gap-2"><input type="text" inputMode="numeric" pattern="[0-9]*" value={years === 0 ? "" : years} onChange={(e) => setYears(Math.min(40, Number(e.target.value.replace(/\D/g, "")) || 0))} className="editorial-input" data-testid="proj-years" /><span className="font-display text-2xl opacity-60">years</span></div>
             <div className="mt-8 space-y-3">
               {scenarios.map((s) => (
                 <div key={s.name} className="flex items-baseline justify-between border-b pb-2" style={{ borderColor: "var(--hairline-light)" }}>
