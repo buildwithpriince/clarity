@@ -159,15 +159,15 @@ export default function ChapterInvest() {
                     <div className="flex items-baseline gap-3">
                       {q.prefix && <span className="font-display text-4xl opacity-60">{q.prefix}</span>}
                       <input
-                        type="number"
-                        min={q.min}
-                        max={q.max}
-                        value={tempNum}
-                        onChange={(e) => setTempNum(e.target.value)}
-                        placeholder={q.placeholder}
-                        className="editorial-input"
-                        data-testid={`inv-input-${q.key}`}
-                        autoFocus
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      value={tempNum}
+                      onChange={(e) => setTempNum(e.target.value.replace(/\D/g, ""))}
+                      placeholder={q.placeholder}
+                      className="editorial-input"
+                      data-testid={`inv-input-${q.key}`}
+                      autoFocus
                       />
                       {q.suffix && <span className="font-display text-2xl opacity-60">{q.suffix}</span>}
                     </div>

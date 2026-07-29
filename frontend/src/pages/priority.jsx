@@ -513,12 +513,15 @@ function NumberField({ label, prefix, suffix, value, onChange, testid, min = 0, 
       <div className="flex items-baseline gap-3">
         {prefix && <span className="font-display text-3xl opacity-60">{prefix}</span>}
         <input
-          type="number"
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          onChange={(e) => onChange(Number(e.target.value) || min || 1)}
+          type="text"
+          inputMode="decimal"
+          value={value === 0 ? "" : value}
+          onChange={(e) => {
+            const raw = e.target.value.replace(/[^0-9.]/g, "");
+            let n = raw === "" ? 0 : Number(raw);
+            if (max !== undefined) n = Math.min(n, max);
+            onChange(n);
+          }}
           className="editorial-input"
           style={{ fontSize: "2.5rem" }}
           data-testid={testid}

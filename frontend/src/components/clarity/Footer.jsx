@@ -15,7 +15,7 @@ export default function Footer() {
             <div className="eyebrow mb-3 opacity-70">Chapters</div>
             <ul className="grid gap-2">
               {[
-                ["00", "Hero", "hero"],
+                ["00", "Hero ", "hero"],
                 ["01", "The Fog", "score"],
                 ["02", "The Portrait", "profiles"],
                 ["03", "The Compass", "invest"],

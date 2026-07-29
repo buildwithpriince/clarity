@@ -23,7 +23,7 @@ export function P2PPage() {
             <div className="eyebrow opacity-60 mb-2">To</div>
             <input placeholder="Name or UPI ID" value={contact} onChange={(e) => setContact(e.target.value)} className="editorial-input mb-6" style={{ fontSize: "1.6rem" }} data-testid="p2p-contact" />
             <div className="eyebrow opacity-60 mb-2">Amount</div>
-            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="number" value={amt} onChange={(e) => setAmt(e.target.value)} className="editorial-input" data-testid="p2p-amt" /></div>
+            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="text" inputMode="numeric" pattern="[0-9]*" value={amt} onChange={(e) => setAmt(e.target.value.replace(/\D/g, ""))} className="editorial-input" data-testid="p2p-amt" /></div>
             <button className="pill-btn" onClick={send} data-testid="p2p-send">Send →</button>
           </div>
         }
@@ -104,7 +104,7 @@ export function SplitPage() {
         left={
           <div>
             <div className="eyebrow opacity-60 mb-2">Total</div>
-            <div className="flex items-baseline gap-2 mb-8"><span className="font-display text-3xl opacity-60">₹</span><input type="number" value={total} onChange={(e) => setTotal(+e.target.value)} className="editorial-input" data-testid="split-total" /></div>
+            <div className="flex items-baseline gap-2 mb-8"><span className="font-display text-3xl opacity-60">₹</span><input type="text" inputMode="numeric" pattern="[0-9]*" value={total === 0 ? "" : total} onChange={(e) => setTotal(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" data-testid="split-total" /></div>
             <div className="eyebrow opacity-60 mb-3">People ({people.length})</div>
             <div className="flex flex-wrap gap-2 mb-4" data-testid="split-people">
               {people.map((p, i) => (

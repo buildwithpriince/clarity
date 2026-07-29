@@ -103,7 +103,7 @@ function EditableList({ title, data, setData, testid }) {
       ))}
       <div className="flex items-baseline gap-3 pt-3">
         <input placeholder="Add row…" value={newKey} onChange={(e) => setNewKey(e.target.value)} className="editorial-input flex-1" style={{ fontSize: "1rem" }} />
-        <input type="number" placeholder="₹" value={newVal} onChange={(e) => setNewVal(e.target.value)} className="editorial-input w-32 text-right" style={{ fontSize: "1rem" }} />
+        <input type="text" inputMode="numeric" pattern="[0-9]*" placeholder="₹" value={newVal} onChange={(e) => setNewVal(e.target.value.replace(/\D/g, ""))} className="editorial-input w-32 text-right" style={{ fontSize: "1rem" }} />
         <button className="nav-link" onClick={() => { if (newKey && newVal) { setData({ ...data, [newKey]: Number(newVal) }); setNewKey(""); setNewVal(""); } }} data-testid={`${testid}-add`}>+ Add</button>
       </div>
     </div>

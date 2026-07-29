@@ -18,12 +18,12 @@ export function MicroLoanPage() {
         left={
           <div>
             <div className="eyebrow opacity-60 mb-2">Monthly income</div>
-            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="number" value={income} onChange={(e) => setIncome(+e.target.value)} className="editorial-input" data-testid="micro-income" /></div>
+            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="text" inputMode="numeric" pattern="[0-9]*" value={income === 0 ? "" : income} onChange={(e) => setIncome(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" data-testid="micro-income" /></div>
             <div className="eyebrow opacity-60 mb-2">Your Clarity score</div>
             <input type="range" min={300} max={900} value={score} onChange={(e) => setScore(+e.target.value)} className="w-full mb-2" data-testid="micro-score" />
             <div className="font-mono text-[11px] opacity-70 mb-6">{score} / 900</div>
             <div className="eyebrow opacity-60 mb-2">Tenure</div>
-            <div className="flex items-baseline gap-2"><input type="number" value={tenure} onChange={(e) => setTenure(+e.target.value)} min={1} max={24} className="editorial-input" data-testid="micro-tenure" /><span className="font-display text-xl opacity-60">months</span></div>
+            <div className="flex items-baseline gap-2"><input type="text" inputMode="numeric" pattern="[0-9]*" value={tenure === 0 ? "" : tenure} onChange={(e) => setTenure(Math.min(24, Number(e.target.value.replace(/\D/g, "")) || 0))} className="editorial-input" data-testid="micro-tenure" /><span className="font-display text-xl opacity-60">months</span></div>
           </div>
         }
         right={

@@ -40,8 +40,8 @@ export function GoalsPage() {
               <input placeholder="New goal name" value={name} onChange={(e) => setName(e.target.value)} className="editorial-input mb-3" style={{ fontSize: "1.4rem" }} data-testid="goal-name" />
               <div className="flex gap-3 items-baseline mb-4">
                 <span className="font-display text-lg opacity-60">₹</span>
-                <input type="number" value={target} onChange={(e) => setTarget(+e.target.value)} className="editorial-input" style={{ fontSize: "1.4rem" }} data-testid="goal-target" />
-                <input type="number" value={months} onChange={(e) => setMonths(+e.target.value)} className="editorial-input w-24" style={{ fontSize: "1.4rem" }} data-testid="goal-months" />
+                <input type="text" inputMode="numeric" pattern="[0-9]*" value={target === 0 ? "" : target} onChange={(e) => setTarget(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" style={{ fontSize: "1.4rem" }} data-testid="goal-target" />
+                <input type="text" inputMode="numeric" pattern="[0-9]*" value={months === 0 ? "" : months} onChange={(e) => setMonths(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input w-24" style={{ fontSize: "1.4rem" }} data-testid="goal-months" />
                 <span className="font-display text-lg opacity-60">mo</span>
               </div>
               <button className="pill-btn" onClick={() => { if (name && target && months) { setGoals([...goals, { name, target, months, saved: 0 }]); setName(""); } }} data-testid="goal-add">+ Add goal</button>
@@ -139,9 +139,9 @@ export function GrowthProjectionsPage() {
         left={
           <div>
             <div className="eyebrow opacity-60 mb-2">Monthly amount</div>
-            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="number" value={monthly} onChange={(e) => setMonthly(+e.target.value)} className="editorial-input" data-testid="proj-monthly" /></div>
+            <div className="flex items-baseline gap-2 mb-6"><span className="font-display text-3xl opacity-60">₹</span><input type="text" inputMode="numeric" pattern="[0-9]*" value={monthly === 0 ? "" : monthly} onChange={(e) => setMonthly(Number(e.target.value.replace(/\D/g, "")) || 0)} className="editorial-input" data-testid="proj-monthly" /></div>
             <div className="eyebrow opacity-60 mb-2">Years</div>
-            <div className="flex items-baseline gap-2"><input type="number" value={years} min={1} max={40} onChange={(e) => setYears(+e.target.value)} className="editorial-input" data-testid="proj-years" /><span className="font-display text-2xl opacity-60">years</span></div>
+            <div className="flex items-baseline gap-2"><input type="text" inputMode="numeric" pattern="[0-9]*" value={years === 0 ? "" : years} onChange={(e) => setYears(Math.min(40, Number(e.target.value.replace(/\D/g, "")) || 0))} className="editorial-input" data-testid="proj-years" /><span className="font-display text-2xl opacity-60">years</span></div>
             <div className="mt-8 space-y-3">
               {scenarios.map((s) => (
                 <div key={s.name} className="flex items-baseline justify-between border-b pb-2" style={{ borderColor: "var(--hairline-light)" }}>
